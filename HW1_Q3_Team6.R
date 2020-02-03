@@ -80,11 +80,21 @@ iris_test <- iris_test[,-(2:5)]
 
 #Viewing Est Data
 View(iris_test)
+table(iris_test$Species)
 
 #================================================
 # Step-4: Improve model
 #================================================
 
+# Performing k-NN - k=5
+iris_test_pred <- knn(train=iris_training_n, test=iris_test_n, cl=iris_train_labels, k=5)
 
+# Adding Species column to test data
+iris_test$Species <- iris_test_pred
 
+#Viewing Est Data
+View(iris_test)
+table(iris_test$Species)
 
+# Save results as an excel sheet
+write.table(iris_test, file="iris_test_submissionFormat.csv", sep=",")
