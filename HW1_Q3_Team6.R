@@ -23,15 +23,11 @@ iris_test <- read.csv("iris_test.csv", stringsAsFactors = FALSE)
 # Switch Species from character to factor
 iris_training$Species <- factor(iris_training$Species)
 
-data.frame(iris_training)
-data.frame(iris_test)
-
-# Remove the ID feature
-iris_training <-iris_training[-1]
-iris_test <- iris_test[-1]
-
 # Adding Specites column to test data
 iris_test$Species <- factor(0)
+
+data.frame(iris_training)
+data.frame(iris_test)
 
 # Obtain outcome of the Species and create table
 table(iris_training$Species)
@@ -45,14 +41,14 @@ normalize <- function(x) {
 }
 
 # Apply the normalize function to columns 2 through 31
-iris_training_n <-as.data.frame(lapply(iris_training[1:4], normalize))
-iris_test_n <-as.data.frame(lapply(iris_test[1:4], normalize)) 
+iris_training_n <-as.data.frame(lapply(iris_training[2:5], normalize))
+iris_test_n <-as.data.frame(lapply(iris_test[2:5], normalize)) 
 
 # Confrim the transformation was applied correctly
 summary(iris_training_n)
 
 # Creating labels
-iris_train_labels <- iris_training[1:105,5]
+iris_train_labels <- iris_training[1:105,6]
 print(iris_train_labels)
 
 iris_test_labels <- iris_test[106:150,5]
@@ -68,18 +64,27 @@ install.packages("class")
 # Load the "class package for k-NN
 library(class)
 
+# Performing k-NN
 iris_test_pred <- knn(train=iris_training_n, test=iris_test_n, cl=iris_train_labels, k=10)
 
 #================================================
-# Step-3: Evaluate the model performance
+# Step-3: View Data Results in table
 #================================================
 
-# Installing gmodels to perform evaluation on train and test data
-install.packages("gmodels")
+# Viewing results
+iris_test_pred
 
-# loading gmodels 
-library(gmodels)
+# Adding Species column to test data
+iris_test$Species <- iris_test_pred
+iris_test <- iris_test[,-(2:5)]
 
-# Evaluting how well the predicted classes match the
-# actual values 
+#Viewing Est Data
+View(iris_test)
+
+#================================================
+# Step-4: Improve model
+#================================================
+
+
+
 
