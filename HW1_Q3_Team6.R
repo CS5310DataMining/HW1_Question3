@@ -1,7 +1,14 @@
 # HW_1 Questio_3
+#Team: 6
+#Team Members:
+  #Melvin Zaldivar - Members contribution: 33.33%
+  #Rahim Abdulmalik - Members contribution: 33.33%
+  #Raul Beiza - Members contribution: 33.33%
 
+# Due Date: February 2, 2020
 
-
+## k-NN Lazy Learning - Classfication Using 
+#  Nearest Neighbor
 
 #====================================================
 # Step-1 Import the data
