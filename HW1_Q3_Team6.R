@@ -1,4 +1,4 @@
-# HW_1 Questio_3
+# HW_1 Question_3
 #Team: 6
 #Team Members:
 #Melvin Zaldivar - Members contribution: 33.33%
@@ -78,9 +78,12 @@ iris_test_pred
 iris_test$Species <- iris_test_pred
 iris_test <- iris_test[,-(2:5)]
 
-#Viewing Est Data
+#Viewing predicted Data
 View(iris_test)
 table(iris_test$Species)
+
+# Saving file for export as excel spreadsheet
+write.table(iris_test, file="iris_test_submissionFormat.csv", sep=",")
 
 #================================================
 # Step-4: Improve model
@@ -92,9 +95,36 @@ iris_test_pred <- knn(train=iris_training_n, test=iris_test_n, cl=iris_train_lab
 # Adding Species column to test data
 iris_test$Species <- iris_test_pred
 
-#Viewing Est Data
+#Viewing predicted Data
 View(iris_test)
 table(iris_test$Species)
 
-# Save results as an excel sheet
-write.table(iris_test, file="iris_test_submissionFormat.csv", sep=",")
+# Performing k-NN - k=3
+iris_test_pred <- knn(train=iris_training_n, test=iris_test_n, cl=iris_train_labels, k=3)
+
+# Adding Species column to test data
+iris_test$Species <- iris_test_pred
+
+#Viewing predicted Data
+View(iris_test)
+table(iris_test$Species)
+
+# Performing k-NN - k=1
+iris_test_pred <- knn(train=iris_training_n, test=iris_test_n, cl=iris_train_labels, k=1)
+
+# Adding Species column to test data
+iris_test$Species <- iris_test_pred
+
+#Viewing predicted Data
+View(iris_test)
+table(iris_test$Species)
+
+# Performing k-NN - k=15
+iris_test_pred <- knn(train=iris_training_n, test=iris_test_n, cl=iris_train_labels, k=15)
+
+# Adding Species column to test data
+iris_test$Species <- iris_test_pred
+
+#Viewing predicted Data
+View(iris_test)
+table(iris_test$Species)
